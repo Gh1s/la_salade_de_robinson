@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "989293001446",
+    "firebase_url": "https://la-salade-de-robinson.firebaseio.com",
+    "project_id": "la-salade-de-robinson",
+    "storage_bucket": "la-salade-de-robinson.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989293001446:android:e9a0c5cdad78846e149927",
+        "android_client_info": {
+          "package_name": "com.example.la_salade_de_robinson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989293001446-pm7vgn3trb8fb98q5tdmmcshpvb7sn8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwEXNGlwhqUsCT1LmdEci4Mzmmt4Qx2vg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989293001446-pm7vgn3trb8fb98q5tdmmcshpvb7sn8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989293001446:android:07a5c0355d4f508f149927",
+        "android_client_info": {
+          "package_name": "com.example.la_salade_de_robinson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989293001446-gfifn8sdtm6kth6pslrhlnel60l0rhq2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.la_salade_de_robinson",
+            "certificate_hash": "d535c0ff6a4936251dc820b26492e1673e7ae290"
+          }
+        },
+        {
+          "client_id": "989293001446-pm7vgn3trb8fb98q5tdmmcshpvb7sn8f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwEXNGlwhqUsCT1LmdEci4Mzmmt4Qx2vg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989293001446-pm7vgn3trb8fb98q5tdmmcshpvb7sn8f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
