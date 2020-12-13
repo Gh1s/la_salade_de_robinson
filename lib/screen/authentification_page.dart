@@ -1,8 +1,10 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:la_salade_de_robinson/screen/home_page.dart';
+import '../main.dart';
 import 'sign_in_page.dart';
 
 void main() {
@@ -11,28 +13,10 @@ void main() {
   ));
 }
 
-class MyAuthenticationPage extends StatefulWidget {
-  @override
-  _MyAuthenticationPageState createState() => _MyAuthenticationPageState();
-}
+class MyAuthenticationPage extends StatelessWidget {
 
-class _MyAuthenticationPageState extends State<MyAuthenticationPage> {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
-
-  /*Future loginWithEmail({
-    @required String email,
-    @required String password,
-  }) async {
-    try {
-      var user = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      return user != null;
-    } catch (e) {
-      return e.message;
-    }
-  }*/
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,24 +54,24 @@ class _MyAuthenticationPageState extends State<MyAuthenticationPage> {
                 Container(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    //controller: nameController,
+                    controller: emailTextEditingController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Adresse email',
                     ),
-                    controller: emailTextEditingController,
+                    //controller: emailTextEditingController,
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: TextField(
                     obscureText: true,
-                    //controller: passwordController,
+                    controller: passwordTextEditingController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Mot de passe',
                     ),
-                    controller: passwordTextEditingController,
+                    //controller: passwordTextEditingController,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -121,12 +105,13 @@ class _MyAuthenticationPageState extends State<MyAuthenticationPage> {
                     onPressed: () {
                       //print(nameController.text);
                       //print(passwordController.text);
-                      loginWithEmail(context);
-
-                      /*Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MyHomePage()));*/
+                      if (!emailTextEditingController.text.contains("@")) {
+                        displayToastMessage("Cet email n'est pas valide", context);
+                      } else if (passwordTextEditingController.text.isEmpty) {
+                        displayToastMessage("SVP veuillez taper votre mot de passe", context);
+                      } else {
+                        loginWithEmail(context);
+                      }
                     },
                   ),
                 ),
@@ -159,35 +144,35 @@ class _MyAuthenticationPageState extends State<MyAuthenticationPage> {
     );
   }
 
-
-
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   void loginWithEmail(BuildContext context) async {
+
     final User firebaseUser = (await _firebaseAuth
         .signInWithEmailAndPassword(
         email: emailTextEditingController.text,
         password: passwordTextEditingController.text
-    ).catchError((errMsg) {
+    ).catchError((errMsg){
       displayToastMessage("Error: " + errMsg.toString(), context);
     })).user;
 
     if (firebaseUser != null) {
-      Map userDataMap = {
-        "email": emailTextEditingController.text.trim(),
-        "password": passwordTextEditingController.text.trim(),
-      };
+      usersRef.child(firebaseUser.uid).once().then((DataSnapshot snap) {
+        if (snap.value != null) {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => MyHomePage(title: 'La salade de Robinson')),
+                  ModalRoute.withName('/home'));
+          displayToastMessage("Vous êtes connecter", context);
+        } else if (snap.value == null){
+          _firebaseAuth.signOut();
+          displayToastMessage("Ce compte n'existe pas, veuillez créer un compte SVP", context);
+        }
+      });
 
-      //usersRef.child(firebaseUser.uid).set(userDataMap);
-      displayToastMessage("Vous êtes connecter", context);
+    } else if (firebaseUser == null) {
 
-      Navigator.pop(context);
-
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (context) => MyHomePage(title: 'La salade de Robinson')),
-          ModalRoute.withName('/'));
-    } else {
       displayToastMessage(
-          "Veuillez entrer des identifiants valide ou créer un compte",
+          "Erreur de connexion",
           context);
     }
   }

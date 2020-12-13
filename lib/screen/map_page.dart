@@ -32,8 +32,8 @@ class MyMapPageState extends State<MyMapPage> {
     // these are the minimum required values to set
     // the camera position
     CameraPosition initialLocation = CameraPosition(
-        zoom: 18,
-        bearing: 30,
+        zoom: 15,
+        bearing: 0,
         target: pinPosition
     );
 

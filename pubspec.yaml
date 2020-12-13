@@ -71,6 +71,10 @@ flutter:
     - lib/images/salade_4.png
     - lib/images/salade_5.png
     - lib/images/destination_map_marker.png
+    - lib/images/feuille_de_chene.jpg
+    - lib/images/iceberg.jpg
+    - lib/images/laitue.jpg
+    - lib/images/salade_de_ble.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

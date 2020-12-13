@@ -1,12 +1,7 @@
-//import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:la_salade_de_robinson/screen/map_page.dart';
-import 'map_page.dart';
-import 'detail_page.dart';
 import 'authentification_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:location/location.dart';
@@ -90,7 +85,7 @@ class MyHomePage extends StatelessWidget {
               onTap: () {
                 Navigator.pushNamed(
                     context,
-                    '/detail');
+                    '/product');
               },
             ),
             SizedBox(height: 10),

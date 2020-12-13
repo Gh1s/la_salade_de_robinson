@@ -30,6 +30,7 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
           ),
+          centerTitle: true,
           backgroundColor: Colors.green,
         ),
         body: Padding(
@@ -137,13 +138,11 @@ class SignInPage extends StatelessWidget {
 
       usersRef.child(firebaseUser.uid).set(userDataMap);
       displayToastMessage("Hey congratulation you're account has been created", context);
-
-      Navigator.pop(context);
       
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
               builder: (context) => MyHomePage(title: 'La salade de Robinson')),
-              ModalRoute.withName('/'));
+              ModalRoute.withName('/home'));
     } else {
       displayToastMessage("New user account has not been created", context);
     }

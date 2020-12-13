@@ -1,15 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:la_salade_de_robinson/screen/detail_page.dart';
+//import 'package:la_salade_de_robinson/products/products_card.dart';
 import 'package:la_salade_de_robinson/screen/map_page.dart';
 import 'package:la_salade_de_robinson/screen/sign_in_page.dart';
 import 'screen/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
 import 'screen/authentification_page.dart';
+import 'products/products_card.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => MyHomePage(),
         '/signIn': (context) => SignInPage(),
         '/map': (context) => MyMapPage(),
-        '/detail': (context) => MyDetailPage(),
+        '/product': (context) => ProductPage(),
       },
     );
   }
